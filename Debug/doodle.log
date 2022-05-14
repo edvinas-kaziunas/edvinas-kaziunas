@@ -1,0 +1,6 @@
+﻿  Main.cpp
+C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(84,43): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(84,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Utils.cpp
+  Generating Code...
+  doodle.vcxproj -> C:\Users\Edvinas\Desktop\Long road 3\Debug\doodle.exe
