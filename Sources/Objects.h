@@ -10,7 +10,7 @@ struct Player
 
 	float LegsY() { return y + 73; }
 
-	float x, y; // virsutinio kairiojo kampo koordinates
+	float x = 0, y = 0; // virsutinio kairiojo kampo koordinates
 };
 
 struct Plate
@@ -23,5 +23,5 @@ struct Plate
 
 	float BottomY() { return y + PLATES_HEIGHT; }
 
-	float x, y; // virsutinio kairiojo kampo koordinates
+	float x = 0, y = 0; // virsutinio kairiojo kampo koordinates
 };
