@@ -14,7 +14,7 @@ class Car
 private:
 	Player player;
 	double px = WINDOW_WIDTH / 2, py = 100;
-	const float dx = 7.0f;
+	const float dx = 10.0f;
 
 public:
 	void operator ++()
@@ -129,12 +129,25 @@ int main()
 	sf::SoundBuffer buffer;
 	buffer.loadFromFile("Resources/Undertale Ost - 098 - Battle Against a True Hero.wav");
 
+	sf::Text text;
+	text.setFont(font);
+	text.setString("0");
+	text.setCharacterSize(55);
+	text.setFillColor(Color::Green);
+	text.setOutlineThickness(3);
+	text.setOutlineColor(Color::Black);
+	text.setPosition(WINDOW_WIDTH / 2.0f - 25.f, WINDOW_HEIGHT - 100.f);
+
 	Sprite sprBackground(tBackground);
 	Sprite sprPlayer(tPlayer);
 	Sprite sprEnemy(tPlatform);
 	Sprite sprEnemy2(tPlatform2);
 	Sprite sprPowerup100(tPowerup);
 	Sprite sprPowerdown(tPowerdown);
+
+	float score = 0;
+	float high = 0;
+	float fail = 0;
 
 	while (app.isOpen())
 	{
@@ -190,7 +203,9 @@ int main()
 		sprPowerdown.setPosition(pd.GetX(), pd.GetY());
 		app.draw(sprPowerdown);
 
-
+		score += 0.1;
+		text.setString(std::format("{:.0f}", score));
+		app.draw(text);
 
 		sprPlayer.setPosition(s.GetX(), s.GetY());
 		app.draw(sprPlayer);
