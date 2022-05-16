@@ -47,7 +47,7 @@ public:
 	}
 	virtual void cmore()
 	{
-		ey = float(WINDOW_HEIGHT);
+		ey = (float)WINDOW_HEIGHT - 20 * (rand() % 3);
 		ex = float(rand() % (WINDOW_WIDTH - PLATES_WIDTH));
 	}
 	float GetX()
@@ -64,7 +64,7 @@ class Enemy1 : public Movement
 public:
 	Enemy1()
 	{
-		ey = float(WINDOW_HEIGHT);
+		ey = (float)WINDOW_HEIGHT - 100 * (rand() % 20);
 		dy = 5;
 	}
 };
@@ -73,30 +73,55 @@ class Enemy2 : public Movement
 public:
 	Enemy2()
 	{
-		ey = float(WINDOW_HEIGHT);
+		ey = (float)WINDOW_HEIGHT - 100 * (rand()%20); 
 	}
 	void MoveDown()
 	{
-		ey -= 10;
+		ey -= 8;
 	}
+};
+class Powerup : public Movement
+{
+public:
+	Powerup()
+	{
+		ey = (float)WINDOW_HEIGHT - 100 * (rand() % 20);
+		dy = 4;
+	}
+
+};
+class Powerdown : public Movement
+{
+public:
+	Powerdown()
+	{
+		ey = (float)WINDOW_HEIGHT - 100 * (rand() % 20);
+	}
+	void MoveDown()
+	{
+		ey -= 6;
+	}
+
 };
 int main()
 {
 	Car s;
 	Enemy1 en1[PLATES_AMOUNT];
 	Enemy2 en2[PLATES_AMOUNT];
+	Powerup pu;
+	Powerdown pd;
 
 	srand((unsigned)time(nullptr));
 	RenderWindow app(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Long Road Deluxe");
 	app.setFramerateLimit(60);
 
-	Texture tBackground, tPlayer, tPlatform, tPlatform2, tPowerup1, tPowerup5;
+	Texture tBackground, tPlayer, tPlatform, tPlatform2, tPowerup, tPowerdown;
 	tBackground.loadFromFile("Resources/road.png");
 	tPlayer.loadFromFile("Resources/car.png");
-	tPlatform.loadFromFile("Resources/encar.png");
+	tPlatform.loadFromFile("Resources/encar4.png");
 	tPlatform2.loadFromFile("Resources/encar2.png");
-	tPowerup1.loadFromFile("Resources/points100.png");
-	tPowerup5.loadFromFile("Resources/points500.png");
+	tPowerup.loadFromFile("Resources/points100.png");
+	tPowerdown.loadFromFile("Resources/negativepoints100.png");
 
 	sf::Font font;
 	font.loadFromFile("Resources/arialbd.ttf");
@@ -108,8 +133,8 @@ int main()
 	Sprite sprPlayer(tPlayer);
 	Sprite sprEnemy(tPlatform);
 	Sprite sprEnemy2(tPlatform2);
-	Sprite sprPowerup100(tPowerup1);
-	Sprite sprPowerup500(tPowerup5);
+	Sprite sprPowerup100(tPowerup);
+	Sprite sprPowerdown(tPowerdown);
 
 	while (app.isOpen())
 	{
@@ -150,6 +175,20 @@ int main()
 			sprEnemy2.setPosition(en2[i].GetX(), en2[i].GetY());
 			app.draw(sprEnemy2);
 		}
+
+		Movement* move3 = &pu;
+		move3->MoveDown();
+		if (move3->GetY() < 0)
+			move3->cmore();
+		sprPowerup100.setPosition(pu.GetX(), pu.GetY());
+		app.draw(sprPowerup100);
+
+		Movement* move4 = &pd;
+		move4->MoveDown();
+		if (move4->GetY() < 0)
+			move4->cmore();
+		sprPowerdown.setPosition(pd.GetX(), pd.GetY());
+		app.draw(sprPowerdown);
 
 
 
