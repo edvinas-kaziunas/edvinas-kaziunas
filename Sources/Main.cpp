@@ -13,7 +13,7 @@ using namespace std;
 class Car
 {
 private:
-	Player player;
+	//Player player;
 	double px = WINDOW_WIDTH / 2, py = 100;
 	const float dx = 10.0f;
 
@@ -34,6 +34,7 @@ public:
 	{
 		return py;
 	}
+
 };
 
 class Movement
@@ -59,6 +60,7 @@ public:
 	{
 		return ey;
 	}
+
 };
 class Enemy1 : public Movement
 {
@@ -66,21 +68,29 @@ public:
 	Enemy1()
 	{
 		ey = (float)WINDOW_HEIGHT - 100 * (rand() % 20);
-		dy = 5;
-	}
-};
-class Enemy2 : public Movement
-{
-public:
-	Enemy2()
-	{
-		ey = (float)WINDOW_HEIGHT - 100 * (rand()%20); 
 	}
 	void MoveDown()
 	{
-		ey -= 8;
+		ey -= 5;
+	}
+	float LeftSide()
+	{
+		return ex;
+	}
+	float RightSide()
+	{
+		return ex + 50;
+	}
+	float Top()
+	{
+		return ey;
+	}
+	float Bottom()
+	{
+		return ey + 90;
 	}
 };
+
 class Powerup : public Movement
 {
 public:
@@ -114,7 +124,6 @@ int main()
 {
 	Car s;
 	Enemy1 en1[PLATES_AMOUNT];
-	Enemy2 en2[PLATES_AMOUNT];
 	Powerup pu;
 	Powerdown pd;
 	map<int, int> p;
@@ -217,16 +226,6 @@ int main()
 				app.draw(sprEnemy);
 			}
 
-			for (int i = 0; i < PLATES_AMOUNT; ++i)
-			{
-				Movement* move2 = &en2[i];
-				move2->MoveDown();
-				if (move2->GetY() < 0)
-					move2->cmore();
-				sprEnemy2.setPosition(en2[i].GetX(), en2[i].GetY());
-				app.draw(sprEnemy2);
-			}
-
 			Movement* move3 = &pu;
 			move3->MoveDown();
 			if (move3->GetY() < 0)
@@ -241,6 +240,14 @@ int main()
 			sprPowerdown.setPosition(pd.GetX(), pd.GetY());
 			app.draw(sprPowerdown);
 
+			for (int i = 0; i < PLATES_AMOUNT; ++i)
+			{
+				if (nmUtils::InOnPlate(s, en1))
+				{
+					fail++;
+				}
+			}
+
 			score += 0.1;
 		}
 		else
@@ -252,10 +259,26 @@ int main()
 			app.draw(text4);
 		}
 
-		//catch (float n) // jeigu prie throw parasomas skaicius
-		//{
-			//score = 0;
-		//}
+		if (nmUtils::InOnPlate(s, pu))
+		{
+			score = score + 100;
+			++p[1];
+		}
+
+		if (nmUtils::InOnPlate(s, pd))
+		{
+			try
+			{
+				pd.Minus(score);
+				++p[2];
+			}
+			catch (float n) // jeigu prie throw parasomas skaicius
+			{
+				score = 0;
+			}
+		}
+		
+		
 		
 		text.setString(std::format("{:.0f}", score));
 		app.draw(text);

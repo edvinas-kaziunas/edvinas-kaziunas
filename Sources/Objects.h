@@ -2,26 +2,28 @@
 
 #include "Defines.h"
 
-struct Player
+class Car
 {
-	float LegsStartX() { return x + 24; }
+public:
+	float LeftSide() { return px; }
 
-	float LegsEndX() { return x + 64; }
+	float RightSide() { return px + 50; }
 
-	float LegsY() { return y + 73; }
+	float Bottom() { return py + 90; }
 
-	float x = 0, y = 0; // virsutinio kairiojo kampo koordinates
+	float px = 0, py = 0; // virsutinio kairiojo kampo koordinates
 };
 
-struct Plate
+class Movement
 {
-	float StartX() { return x; }
+public:
+	float LeftSide() { return ex; }
 
-	float EndX() { return x + PLATES_WIDTH; }
+	float RightSide() { return ex + 20; }
 
-	float TopY() { return y; }
+	float Top() { return ey; }
 
-	float BottomY() { return y + PLATES_HEIGHT; }
+	float Bottom() { return ey + 20; }
 
-	float x = 0, y = 0; // virsutinio kairiojo kampo koordinates
+	float ex = 0, ey = 0; // virsutinio kairiojo kampo koordinates
 };
