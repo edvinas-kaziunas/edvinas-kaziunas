@@ -54,13 +54,13 @@ public:
 	{
 		return ey;
 	}
-	float LeftSide() { return ex; }
+	virtual float LeftSide() { return ex; }
 
-	float RightSide() { return ex + 20; }
+	virtual float RightSide() { return ex + 20; }
 
-	float Top() { return ey; }
+	virtual float Top() { return ey; }
 
-	float Bottom() { return ey + 20; }
+	virtual float Bottom() { return ey + 20; }
 
 };
 

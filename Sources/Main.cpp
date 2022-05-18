@@ -15,7 +15,9 @@ class Decrease
 public:
 	float Minus(float s)
 	{
-		if (s < 101) throw 0;
+		float t;
+		t = 0.;
+		if (s < 101) throw t;
 		else return s - 100;
 	}
 };
@@ -85,6 +87,14 @@ int main()
 	text4.setOutlineColor(Color::Black);
 	text4.setPosition(WINDOW_WIDTH / 2.0f - 250.f, WINDOW_HEIGHT-450.f);
 
+	sf::Text text5;
+	text5.setFont(font);
+	text5.setCharacterSize(20);
+	text5.setFillColor(Color::Yellow);
+	text5.setOutlineThickness(2);
+	text5.setOutlineColor(Color::Black);
+	text5.setPosition(WINDOW_WIDTH / 2.0f - 250.f, WINDOW_HEIGHT - 400.f);
+
 	Sprite sprBackground(tBackground);
 	Sprite sprPlayer(tPlayer);
 	Sprite sprEnemy(tPlatform);
@@ -150,6 +160,10 @@ int main()
 			}
 
 			score += 0.1;
+
+			sprPlayer.setPosition(s.GetX(), s.GetY());
+			app.draw(sprPlayer);
+
 		}
 		else
 		{
@@ -158,10 +172,12 @@ int main()
 			text3.setString("Game Over");
 			app.draw(text3);
 			auto c1 = p.find(1);
-			pup.first = "Powerups collected:";
-			pup.second = c1->second;
-			text4.setString(std::format("{:.0f}", pup));
+			auto c2 = p.find(2);
+			text4.setString(std::format("Powerups collected: {:.0f}", c1->second));
+			text5.setString(std::format("Powerdowns collected: {:.0f}", c2->second));
 			app.draw(text4);
+			app.draw(text5);
+
 		}
 
 		if (nmUtils::InOnPlate(s, pu))
@@ -174,7 +190,7 @@ int main()
 		{
 			try
 			{
-				d.Minus(score);
+				score=d.Minus(score);
 				++p[2];
 			}
 			catch (float n) // jeigu prie throw parasomas skaicius
@@ -191,8 +207,7 @@ int main()
 		text2.setString(std::format("{:.0f}", high));
 		app.draw(text2);
 
-		sprPlayer.setPosition(s.GetX(), s.GetY());
-		app.draw(sprPlayer);
+		
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
 		{
