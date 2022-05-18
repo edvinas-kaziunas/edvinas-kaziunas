@@ -10,13 +10,25 @@
 using namespace sf;
 using namespace std;
 
+class Decrease
+{
+public:
+	float Minus(float s)
+	{
+		if (s < 101) throw 0;
+		else return s - 100;
+	}
+};
 int main()
 {
 	Car s;
 	Enemy1 en1[PLATES_AMOUNT];
 	Powerup pu;
 	Powerdown pd;
-	map<int, int> p;
+	Decrease d;
+	map<int, float> p;
+	pair<string, float> pup;
+	pair<string, float> pdown;
 	p[1];
 	p[2];
 
@@ -67,7 +79,6 @@ int main()
 
 	sf::Text text4;
 	text4.setFont(font);
-	text4.setString("Powerups collected: ");
 	text4.setCharacterSize(20);
 	text4.setFillColor(Color::Blue);
 	text4.setOutlineThickness(2);
@@ -146,6 +157,10 @@ int main()
 			score = 0;
 			text3.setString("Game Over");
 			app.draw(text3);
+			auto c1 = p.find(1);
+			pup.first = "Powerups collected:";
+			pup.second = c1->second;
+			text4.setString(std::format("{:.0f}", pup));
 			app.draw(text4);
 		}
 
@@ -159,7 +174,7 @@ int main()
 		{
 			try
 			{
-				pd.Minus(score);
+				d.Minus(score);
 				++p[2];
 			}
 			catch (float n) // jeigu prie throw parasomas skaicius

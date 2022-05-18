@@ -1,5 +1,5 @@
 #pragma once
-
+#include <cstdlib>
 #include "Defines.h"
 
 class Car
@@ -30,7 +30,6 @@ public:
 
 	float Bottom() { return py + 90; }
 
-	float px = 0, py = 0; // virsutinio kairiojo kampo koordinates
 };
 
 class Movement
@@ -63,7 +62,6 @@ public:
 
 	float Bottom() { return ey + 20; }
 
-	float ex = 0, ey = 0; // virsutinio kairiojo kampo koordinates
 };
 
 class Enemy1 : public Movement
@@ -116,12 +114,6 @@ public:
 	void MoveDown()
 	{
 		ey -= 6;
-	}
-	float Minus(float s)
-	{
-		float sm;
-		if (s < 100) throw 99;
-		else return s - 100;
 	}
 
 };

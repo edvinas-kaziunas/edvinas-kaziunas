@@ -1,11 +1,57 @@
 ﻿  Main.cpp
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(39,10): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(43,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(47,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(144,9): warning C4101: 'sm': unreferenced local variable
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(270,16): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(292,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(292,31): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  Utils.cpp
-  Generating Code...
-  doodle.vcxproj -> C:\Users\Edvinas\Desktop\Long road 3\Debug\doodle.exe
+C:\Users\Edvinas\Desktop\Long road 3\Sources\Objects.h(27,28): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Edvinas\Desktop\Long road 3\Sources\Objects.h(29,32): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Edvinas\Desktop\Long road 3\Sources\Objects.h(31,29): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(152,16): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(194,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(194,31): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(180,17): warning C4101: 'n': unreferenced local variable
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\format(1330,1): error C2665: 'std::_Format_arg_traits<_Context>::_Phony_basic_format_arg_constructor': none of the 5 overloads could convert all the argument types
+          with
+          [
+              _Context=std::format_context
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\format(1321,17): message : could be 'const void *std::_Format_arg_traits<_Context>::_Phony_basic_format_arg_constructor(std::nullptr_t)'
+          with
+          [
+              _Context=std::format_context
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\format(1311,17): message : or       'const char *std::_Format_arg_traits<_Context>::_Phony_basic_format_arg_constructor(const char *)'
+          with
+          [
+              _Context=std::format_context
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\format(1309,17): message : or       'long double std::_Format_arg_traits<_Context>::_Phony_basic_format_arg_constructor(long double)'
+          with
+          [
+              _Context=std::format_context
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\format(1308,17): message : or       'double std::_Format_arg_traits<_Context>::_Phony_basic_format_arg_constructor(double)'
+          with
+          [
+              _Context=std::format_context
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\format(1307,17): message : or       'float std::_Format_arg_traits<_Context>::_Phony_basic_format_arg_constructor(float)'
+          with
+          [
+              _Context=std::format_context
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\format(1330,1): message : while trying to match the argument list '(const _Ty)'
+          with
+          [
+              _Ty=std::pair<std::string,float>
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\format(1333): message : see reference to alias template instantiation 'std::_Format_arg_traits<_Context>::_Storage_type<_Ty>' being compiled
+          with
+          [
+              _Context=std::format_context,
+              _Ty=std::pair<std::string,float>
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\format(1368): message : see reference to variable template 'const size_t std::_Format_arg_traits<std::basic_format_context<std::back_insert_iterator<std::_Fmt_buffer<char> >,char> >::_Storage_size<std::pair<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,float> >' being compiled
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\format(2790): message : see reference to class template instantiation 'std::_Format_arg_store<_Context,std::pair<std::string,float>>' being compiled
+          with
+          [
+              _Context=std::format_context
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.30.30705\include\format(2904): message : see reference to function template instantiation 'auto std::make_format_args<std::format_context,std::pair<std::string,float>>(const std::pair<std::string,float> &)' being compiled
+C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(163): message : see reference to function template instantiation 'std::string std::format<std::pair<std::string,float>>(const std::string_view,const std::pair<std::string,float> &)' being compiled
