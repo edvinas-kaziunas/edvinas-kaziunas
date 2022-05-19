@@ -56,11 +56,11 @@ public:
 	}
 	virtual float LeftSide() { return ex; }
 
-	virtual float RightSide() { return ex + 20; }
+	virtual float RightSide() { return ex + 30; }
 
 	virtual float Top() { return ey; }
 
-	virtual float Bottom() { return ey + 20; }
+	virtual float Bottom() { return ey + 30; }
 
 };
 

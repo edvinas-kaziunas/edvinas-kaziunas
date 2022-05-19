@@ -164,6 +164,27 @@ int main()
 			sprPlayer.setPosition(s.GetX(), s.GetY());
 			app.draw(sprPlayer);
 
+			if (nmUtils::InOnPlate(s, pu))
+			{
+				score = score + 100;
+				++p[1];
+				move3->cmore();
+			}
+
+			if (nmUtils::InOnPlate(s, pd))
+			{
+				move4->cmore();
+				try
+				{
+					score = d.Minus(score);
+					++p[2];
+				}
+				catch (float n) // jeigu prie throw parasomas skaicius
+				{
+					score = 0;
+				}
+			}
+
 		}
 		else
 		{
@@ -179,27 +200,6 @@ int main()
 			app.draw(text5);
 
 		}
-
-		if (nmUtils::InOnPlate(s, pu))
-		{
-			score = score + 100;
-			++p[1];
-		}
-
-		if (nmUtils::InOnPlate(s, pd))
-		{
-			try
-			{
-				score=d.Minus(score);
-				++p[2];
-			}
-			catch (float n) // jeigu prie throw parasomas skaicius
-			{
-				score = 0;
-			}
-		}
-		
-		
 		
 		text.setString(std::format("{:.0f}", score));
 		app.draw(text);

@@ -2,15 +2,8 @@
 C:\Users\Edvinas\Desktop\Long road 3\Sources\Objects.h(27,28): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
 C:\Users\Edvinas\Desktop\Long road 3\Sources\Objects.h(29,32): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
 C:\Users\Edvinas\Desktop\Long road 3\Sources\Objects.h(31,29): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Objects.h(42,12): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
 C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(162,16): warning C4305: '+=': truncation from 'double' to 'float'
 C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(164,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(164,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(196,17): warning C4101: 'n': unreferenced local variable
-  Utils.cpp
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Objects.h(27,28): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Objects.h(29,32): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Objects.h(31,29): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Objects.h(42,12): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
+C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(182,18): warning C4101: 'n': unreferenced local variable
   doodle.vcxproj -> C:\Users\Edvinas\Desktop\Long road 3\Debug\doodle.exe
