@@ -10,29 +10,20 @@
 using namespace sf;
 using namespace std;
 
-class Decrease
+float Minus(float s)
 {
-public:
-	float Minus(float s)
-	{
-		float t;
-		t = 0.;
-		if (s < 101) throw t;
-		else return s - 100;
-	}
-};
+	if (s < 101)
+		throw 0;
+	return s - 100;
+}
+
 int main()
 {
 	Car s;
-	Enemy1 en1[PLATES_AMOUNT];
-	Powerup pu;
-	Powerdown pd;
-	Decrease d;
+	Enemy en1[PLATES_AMOUNT];
+	Powerup pu(4.0f);
+	Powerup pd(6.0f);
 	map<int, float> p;
-	pair<string, float> pup;
-	pair<string, float> pdown;
-	p[1];
-	p[2];
 
 	srand((unsigned)time(nullptr));
 	RenderWindow app(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Long Road Deluxe");
@@ -129,25 +120,25 @@ int main()
 		{
 			for (int i = 0; i < PLATES_AMOUNT; ++i)
 			{
-				Movement* move1 = &en1[i];
-				move1->MoveDown();
+				MovingObject* move1 = &en1[i];
+				move1->MoveUp();
 				if (move1->GetY() < 0)
-					move1->cmore();
+					move1->Respawn();
 				sprEnemy.setPosition(en1[i].GetX(), en1[i].GetY());
 				app.draw(sprEnemy);
 			}
 
-			Movement* move3 = &pu;
-			move3->MoveDown();
+			MovingObject* move3 = &pu;
+			move3->MoveUp();
 			if (move3->GetY() < 0)
-				move3->cmore();
+				move3->Respawn();
 			sprPowerup100.setPosition(pu.GetX(), pu.GetY());
 			app.draw(sprPowerup100);
 
-			Movement* move4 = &pd;
-			move4->MoveDown();
+			MovingObject* move4 = &pd;
+			move4->MoveUp();
 			if (move4->GetY() < 0)
-				move4->cmore();
+				move4->Respawn();
 			sprPowerdown.setPosition(pd.GetX(), pd.GetY());
 			app.draw(sprPowerdown);
 
@@ -168,18 +159,18 @@ int main()
 			{
 				score = score + 100;
 				++p[1];
-				move3->cmore();
+				move3->Respawn();
 			}
 
 			if (nmUtils::InOnPlate(s, pd))
 			{
-				move4->cmore();
+				move4->Respawn();
 				try
 				{
-					score = d.Minus(score);
 					++p[2];
+					score = Minus(score);
 				}
-				catch (float n) // jeigu prie throw parasomas skaicius
+				catch (int n) // jeigu prie throw parasomas skaicius
 				{
 					score = 0;
 				}
@@ -192,10 +183,8 @@ int main()
 			score = 0;
 			text3.setString("Game Over");
 			app.draw(text3);
-			auto c1 = p.find(1);
-			auto c2 = p.find(2);
-			text4.setString(std::format("Powerups collected: {:.0f}", c1->second));
-			text5.setString(std::format("Powerdowns collected: {:.0f}", c2->second));
+			text4.setString(std::format("Powerups collected: {:.0f}", p[1]));
+			text5.setString(std::format("Powerdowns collected: {:.0f}", p[2]));
 			app.draw(text4);
 			app.draw(text5);
 

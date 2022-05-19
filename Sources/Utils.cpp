@@ -6,12 +6,12 @@ bool nmUtils::IsBetween(float val, float rangeB, float rangeE)
 	return val > rangeB && val < rangeE;
 }
 
-bool nmUtils::InOnPlate(Car &player, Movement &enemy)
+bool nmUtils::InOnPlate(Car &player, MovingObject &enemy)
 {
-	const bool betweenX = IsBetween(player.LeftSide(), enemy.LeftSide(), enemy.RightSide()) ||
-		IsBetween(player.RightSide(), enemy.LeftSide(), enemy.RightSide());
+	const bool betweenX = IsBetween(player.SpriteLeft(), enemy.SpriteLeft(), enemy.SpriteRight()) ||
+		IsBetween(player.SpriteRight(), enemy.SpriteLeft(), enemy.SpriteRight());
 
-	const bool betweenY = IsBetween(player.Bottom(), enemy.Top(), enemy.Bottom());
+	const bool betweenY = IsBetween(player.SpriteBottom(), enemy.SpriteTop(), enemy.SpriteBottom());
 
 	return betweenX && betweenY;
 }

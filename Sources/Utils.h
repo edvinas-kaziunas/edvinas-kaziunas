@@ -1,10 +1,10 @@
 #pragma once
 
 class Car;
-class Movement;
+class MovingObject;
 
 namespace nmUtils
 {
 	bool IsBetween(float val, float rangeB, float rangeE);
-	bool InOnPlate(Car &player, Movement &enemy);
+	bool InOnPlate(Car &player, MovingObject &enemy);
 }

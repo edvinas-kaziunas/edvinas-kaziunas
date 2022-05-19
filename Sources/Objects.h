@@ -2,118 +2,93 @@
 #include <cstdlib>
 #include "Defines.h"
 
-class Car
+class Object
+{
+protected:
+	float x, y;
+
+public:
+	float GetX() { return x; }
+
+	float GetY() { return y; }
+
+	virtual float SpriteLeft() = 0;
+
+	virtual float SpriteRight() = 0;
+
+	virtual float SpriteTop() = 0;
+
+	virtual float SpriteBottom() = 0;
+};
+
+class Car : public Object
 {
 private:
-	double px = WINDOW_WIDTH / 2, py = 100;
 	const float dx = 10.0f;
 public:
+	Car()
+	{
+		Respawn();
+	}
 	void operator ++()
 	{
-		px += dx;
+		x += dx;
 	}
 	void operator --()
 	{
-		px -= dx;
+		x -= dx;
 	}
-	double GetX()
+	void Respawn()
 	{
-		return px;
+		x = WINDOW_WIDTH / 2;
+		y = 100;
 	}
-	double GetY()
-	{
-		return py;
-	}
-	float LeftSide() { return px; }
 
-	float RightSide() { return px + 50; }
-
-	float Bottom() { return py + 90; }
-
+	float SpriteLeft() { return x + 52; }
+	float SpriteRight() { return x + 110; }
+	float SpriteTop() { return y; }
+	float SpriteBottom() { return y + 135; }
 };
 
-class Movement
+class MovingObject : public Object
 {
 protected:
-	float ey, ex, dy;
+	float dy;
 public:
-	virtual void MoveDown() // padaryk grynai virtualiu metodu
+	MovingObject(float dy) : dy(dy)
 	{
-		ey -= dy;
+		Respawn();
 	}
-	virtual void cmore()
+	void MoveUp()
 	{
-		ey = (float)WINDOW_HEIGHT - 20 * (rand() % 3);
-		ex = float(rand() % (WINDOW_WIDTH - PLATES_WIDTH));
+		y -= dy;
 	}
-	float GetX()
+	void Respawn()
 	{
-		return ex;
+		y = (float)WINDOW_HEIGHT - 20 * (rand() % 3);
+		x = float(rand() % (WINDOW_WIDTH - PLATES_WIDTH));
 	}
-	float GetY()
-	{
-		return ey;
-	}
-	virtual float LeftSide() { return ex; }
-
-	virtual float RightSide() { return ex + 30; }
-
-	virtual float Top() { return ey; }
-
-	virtual float Bottom() { return ey + 30; }
-
 };
 
-class Enemy1 : public Movement
+class Enemy : public MovingObject
 {
 public:
-	Enemy1()
-	{
-		ey = (float)WINDOW_HEIGHT - 100 * (rand() % 20);
-	}
-	void MoveDown()
-	{
-		ey -= 5;
-	}
-	float LeftSide()
-	{
-		return ex;
-	}
-	float RightSide()
-	{
-		return ex + 50;
-	}
-	float Top()
-	{
-		return ey;
-	}
-	float Bottom()
-	{
-		return ey + 90;
-	}
+	Enemy() : MovingObject(5.0f) { }
+
+	float SpriteLeft() { return x + 52; }
+	float SpriteRight() { return x + 110; }
+	float SpriteTop() { return y; }
+	float SpriteBottom() { return y + 135; }
 };
 
-class Powerup : public Movement
+class Powerup : public MovingObject
 {
 public:
-	Powerup()
-	{
-		ey = (float)WINDOW_HEIGHT - 100 * (rand() % 20);
-		dy = 4;
-	}
+	Powerup(float speed) : MovingObject(speed) { }
 
+	float SpriteLeft() { return x; }
+	float SpriteRight() { return x + 52; }
+	float SpriteTop() { return y; }
+	float SpriteBottom() { return y + 135; }
 };
 
-class Powerdown : public Movement
-{
-public:
-	Powerdown()
-	{
-		ey = (float)WINDOW_HEIGHT - 100 * (rand() % 20);
-	}
-	void MoveDown()
-	{
-		ey -= 6;
-	}
-
-};
