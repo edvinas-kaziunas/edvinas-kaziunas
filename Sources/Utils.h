@@ -6,5 +6,5 @@ class MovingObject;
 namespace nmUtils
 {
 	bool IsBetween(float val, float rangeB, float rangeE);
-	bool InOnPlate(Car &player, MovingObject &enemy);
+	bool Touching(Car &player, MovingObject &enemy);
 }

@@ -6,6 +6,7 @@
 
 #include "Objects.h"
 #include "Utils.h"
+//#include "Texts.h"
 
 using namespace sf;
 using namespace std;
@@ -37,11 +38,11 @@ int main()
 	tPowerup.loadFromFile("Resources/points100.png");
 	tPowerdown.loadFromFile("Resources/negativepoints100.png");
 
-	sf::Font font;
-	font.loadFromFile("Resources/arialbd.ttf");
-
 	sf::SoundBuffer buffer;
 	buffer.loadFromFile("Resources/Undertale Ost - 098 - Battle Against a True Hero.wav");
+
+	sf::Font font;
+	font.loadFromFile("Resources/arialbd.ttf");
 
 	sf::Text text;
 	text.setFont(font);
@@ -76,7 +77,7 @@ int main()
 	text4.setFillColor(Color::Blue);
 	text4.setOutlineThickness(2);
 	text4.setOutlineColor(Color::Black);
-	text4.setPosition(WINDOW_WIDTH / 2.0f - 250.f, WINDOW_HEIGHT-450.f);
+	text4.setPosition(WINDOW_WIDTH / 2.0f - 250.f, WINDOW_HEIGHT - 450.f);
 
 	sf::Text text5;
 	text5.setFont(font);
@@ -92,6 +93,11 @@ int main()
 	Sprite sprEnemy2(tPlatform2);
 	Sprite sprPowerup100(tPowerup);
 	Sprite sprPowerdown(tPowerdown);
+
+	sf::Sound sound;
+	sound.setBuffer(buffer);
+	sound.play();
+	sound.setLoop(true);
 
 	float score = 0;
 	float high = 0;
@@ -144,7 +150,7 @@ int main()
 
 			for (int i = 0; i < PLATES_AMOUNT; ++i)
 			{
-				if (nmUtils::InOnPlate(s, en1[i]))
+				if (nmUtils::Touching(s, en1[i]))
 				{
 					fail++;
 				}
@@ -155,14 +161,14 @@ int main()
 			sprPlayer.setPosition(s.GetX(), s.GetY());
 			app.draw(sprPlayer);
 
-			if (nmUtils::InOnPlate(s, pu))
+			if (nmUtils::Touching(s, pu))
 			{
 				score = score + 100;
 				++p[1];
 				move3->Respawn();
 			}
 
-			if (nmUtils::InOnPlate(s, pd))
+			if (nmUtils::Touching(s, pd))
 			{
 				move4->Respawn();
 				try
@@ -205,6 +211,15 @@ int main()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
 			fail = 0;
+			p[1] = 0;
+			p[2] = 0;
+			for (int i = 0; i < PLATES_AMOUNT; ++i)
+			{
+				MovingObject* move1 = &en1[i];
+				move1->Respawn();
+				sprEnemy.setPosition(en1[i].GetX(), en1[i].GetY());
+				app.draw(sprEnemy);
+			}
 		}
 
 		app.display();

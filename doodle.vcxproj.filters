@@ -40,5 +40,6 @@
     <ClInclude Include="Sources\Utils.h">
       <Filter>Sources</Filter>
     </ClInclude>
+    <ClInclude Include="Header.h" />
   </ItemGroup>
 </Project>

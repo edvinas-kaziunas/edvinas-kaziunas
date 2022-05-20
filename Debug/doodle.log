@@ -1,4 +1,4 @@
 ﻿  Main.cpp
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(153,16): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(173,16): warning C4101: 'n': unreferenced local variable
+C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(159,16): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Edvinas\Desktop\Long road 3\Sources\Main.cpp(179,16): warning C4101: 'n': unreferenced local variable
   doodle.vcxproj -> C:\Users\Edvinas\Desktop\Long road 3\Debug\doodle.exe

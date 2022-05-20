@@ -46,7 +46,7 @@ public:
 
 	float SpriteLeft() { return x + 52; }
 	float SpriteRight() { return x + 110; }
-	float SpriteTop() { return y; }
+	float SpriteTop() { return y + 23; }
 	float SpriteBottom() { return y + 135; }
 };
 
@@ -55,6 +55,7 @@ class MovingObject : public Object
 protected:
 	float dy;
 public:
+	~MovingObject() { }
 	MovingObject(float dy) : dy(dy)
 	{
 		Respawn();
@@ -77,7 +78,7 @@ public:
 
 	float SpriteLeft() { return x + 52; }
 	float SpriteRight() { return x + 110; }
-	float SpriteTop() { return y; }
+	float SpriteTop() { return y + 23; }
 	float SpriteBottom() { return y + 135; }
 };
 
@@ -85,10 +86,12 @@ class Powerup : public MovingObject
 {
 public:
 	Powerup(float speed) : MovingObject(speed) { }
+	~Powerup() { }
 
 	float SpriteLeft() { return x; }
 	float SpriteRight() { return x + 52; }
 	float SpriteTop() { return y; }
 	float SpriteBottom() { return y + 135; }
 };
+
 

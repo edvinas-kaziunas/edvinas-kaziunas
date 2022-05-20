@@ -100,6 +100,7 @@
     <Image Include="Resources\platform.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header.h" />
     <ClInclude Include="Sources\Defines.h" />
     <ClInclude Include="Sources\Objects.h" />
     <ClInclude Include="Sources\Utils.h" />
