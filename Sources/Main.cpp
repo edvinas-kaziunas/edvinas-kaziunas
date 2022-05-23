@@ -30,8 +30,9 @@ int main()
 	RenderWindow app(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Long Road Deluxe");
 	app.setFramerateLimit(60);
 
-	Texture tBackground, tPlayer, tPlatform, tPlatform2, tPowerup, tPowerdown;
+	Texture tBackground,tTitleScreen, tPlayer, tPlatform, tPlatform2, tPowerup, tPowerdown;
 	tBackground.loadFromFile("Resources/road.png");
+	tTitleScreen.loadFromFile("Resources/Title.png");
 	tPlayer.loadFromFile("Resources/car.png");
 	tPlatform.loadFromFile("Resources/encar4.png");
 	tPlatform2.loadFromFile("Resources/encar2.png");
@@ -87,7 +88,35 @@ int main()
 	text5.setOutlineColor(Color::Black);
 	text5.setPosition(WINDOW_WIDTH / 2.0f - 250.f, WINDOW_HEIGHT - 400.f);
 
+	sf::Text textTitle1;
+	textTitle1.setFont(font);
+	textTitle1.setString("Long Road");
+	textTitle1.setCharacterSize(70);
+	textTitle1.setFillColor(Color::Red);
+	textTitle1.setOutlineThickness(7);
+	textTitle1.setOutlineColor(Color::White);
+	textTitle1.setPosition(WINDOW_WIDTH / 2.0f - 170.f, (WINDOW_HEIGHT / 2)-100.f);
+
+	sf::Text textTitle2;
+	textTitle2.setFont(font);
+	textTitle2.setString("Deluxe");
+	textTitle2.setCharacterSize(50);
+	textTitle2.setFillColor(Color::Cyan);
+	textTitle2.setOutlineThickness(4);
+	textTitle2.setOutlineColor(Color::White);
+	textTitle2.setPosition(WINDOW_WIDTH / 2.0f - 75.f, WINDOW_HEIGHT / 2);
+
+	sf::Text textPressR;
+	textPressR.setFont(font);
+	textPressR.setString("Press R to start");
+	textPressR.setCharacterSize(30);
+	textPressR.setFillColor(Color::White);
+	//textPressR.setOutlineThickness(7);
+	//textPressR.setOutlineColor(Color::Black);
+	textPressR.setPosition(WINDOW_WIDTH / 2.0f - 90.f, WINDOW_HEIGHT-100.f);
+
 	Sprite sprBackground(tBackground);
+	Sprite sprTitle(tTitleScreen);
 	Sprite sprPlayer(tPlayer);
 	Sprite sprEnemy(tPlatform);
 	Sprite sprEnemy2(tPlatform2);
@@ -96,12 +125,12 @@ int main()
 
 	sf::Sound sound;
 	sound.setBuffer(buffer);
-	sound.play();
 	sound.setLoop(true);
+	sound.play();
 
 	float score = 0;
 	float high = 0;
-	float fail = 0;
+	float fail = -1;
 
 	while (app.isOpen())
 	{
@@ -121,7 +150,9 @@ int main()
 			++s;
 		}
 
-		app.draw(sprBackground);
+		if(fail==-1)
+			app.draw(sprTitle);
+		else app.draw(sprBackground);
 		if(fail==0)
 		{
 			for (int i = 0; i < PLATES_AMOUNT; ++i)
@@ -183,7 +214,7 @@ int main()
 			}
 
 		}
-		else
+		else if(fail>0)
 		{
 			if (score > high) high = score;
 			score = 0;
@@ -196,11 +227,22 @@ int main()
 
 		}
 		
-		text.setString(std::format("{:.0f}", score));
-		app.draw(text);
+		if (fail == -1)
+		{
+			app.draw(textTitle1);
+			app.draw(textTitle2);
+			app.draw(textPressR);
+		}
+		else
+		{
+			text.setString(std::format("{:.0f}", score));
+			app.draw(text);
 
-		text2.setString(std::format("{:.0f}", high));
-		app.draw(text2);
+			text2.setString(std::format("{:.0f}", high));
+			app.draw(text2);
+	
+		}
+		
 
 		
 
@@ -218,7 +260,6 @@ int main()
 				MovingObject* move1 = &en1[i];
 				move1->Respawn();
 				sprEnemy.setPosition(en1[i].GetX(), en1[i].GetY());
-				app.draw(sprEnemy);
 			}
 		}
 
